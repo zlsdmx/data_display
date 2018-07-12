@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xhwl.mapper.GroupMapper">
+	<resultMap id="BaseResultMap" type="com.xhwl.po.Group">
+		<!-- WARNING - @mbg.generated -->
+		<id column="c_id" property="cId" jdbcType="INTEGER" />
+		<result column="c_name" property="cName" jdbcType="VARCHAR" />
+
+
+	</resultMap>
+	<!-- 根据groupId查询对应的班级信息,包括学生,老师 -->
+	<!-- 方式一: 嵌套结果: 使用嵌套结果映射来处理重复的联合结果的子集 SELECT * FROM group c, teacher t,student 
+		s WHERE c.teacher_id=t.t_id AND c.c_id=s.group_id AND c.c_id=1 -->
+	<select id="getGroup3" parameterType="int" resultMap="GroupResultMap3">
+		select * from `group` c, teacher t,student s where c.teacher_id=t.t_id and
+		c.c_id=s.group_id and c.c_id=#{id}
+	</select>
+	<resultMap type="com.xhwl.po.Group" id="GroupResultMap3">
+		<id property="id" column="c_id" />
+		<result property="cName" column="c_name" />
+		
+		<association property="teacher" column="teacher_id"
+			javaType="com.xhwl.po.Teacher">
+			<id property="tId" column="t_id" />
+			<result property="tName" column="t_name" />
+		</association>
+		<!-- ofType指定students集合中的对象类型 -->
+		<collection property="students" ofType="com.xhwl.po.Student">
+			<id property="sId" column="s_id" />
+			<result property="sName" column="s_name" />
+			<result property="groupId" column="group_id" />
+		</collection>
+	</resultMap>
+
+	<!-- 方式二：嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型 SELECT * FROM group WHERE c_id=1; 
+		SELECT * FROM teacher WHERE t_id=1 //1 是上一个查询得到的teacher_id的值 SELECT * FROM 
+		student WHERE group_id=1 //1是第一个查询得到的c_id字段的值 -->
+	<select id="getGroup4" parameterType="int" resultMap="GroupResultMap4">
+		select * from `group` where c_id=#{id}
+	</select>
+	<resultMap type="com.xhwl.po.Group" id="GroupResultMap4">
+		<id property="id" column="c_id" />
+		<result property="cName" column="c_name" />
+		<association property="teacher" column="teacher_id"
+			javaType="com.xhwl.po.Teacher" select="getTeacher2"></association>
+		<collection property="students" ofType="com.xhwl.po.Student"
+			column="c_id" select="getStudent"></collection>
+	</resultMap>
+
+	<select id="getTeacher2" parameterType="int" resultType="com.xhwl.po.Teacher">
+		SELECT t_id tId, t_name tName FROM teacher WHERE t_id=#{id}
+	</select>
+
+	<select id="getStudent" parameterType="int" resultType="com.xhwl.po.Student">
+		SELECT s_id sId, s_name sName FROM student WHERE group_id =#{id}
+	</select>
+
+
+	<!-- 方式三: -->
+	<select id="getGroup5" parameterType="int" resultMap="GroupResultMap5">
+		select * from `group` g
+		left join student s
+			on g.c_id = s.group_id
+		left join teacher t
+			on g.teacher_id = t.t_id
+		where g.c_id = #{id}
+	</select>
+
+	<!-- resultMap中的type表示返回什么类型的对象 -->
+	<resultMap type="com.xhwl.po.Group" id="GroupResultMap5">
+		<!-- property 表示com.xhwl.po.Group中的属性； column 表示表中的列名 -->
+		<id column="c_id" property="id" jdbcType="INTEGER" />
+		<result column="c_name" property="cName" jdbcType="VARCHAR" />
+
+		<association property="teacher" javaType="com.xhwl.po.Teacher">
+			<result column="t_id" property="tId" />
+			<result column="t_name" property="tName" />
+		</association>
+		<collection property="students" ofType="com.xhwl.po.Student">
+			<result column="s_id" property="sId" />
+			<result column="s_name" property="sName" />
+			<result column="group_id" property="groupId" />
+		</collection>
+	</resultMap>
+
+
+
+
+
+</mapper>

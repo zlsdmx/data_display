@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xhwl.mapper.MyLogMapper" >
+  <resultMap id="BaseResultMap" type="com.xhwl.po.MyLog" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="action_url" property="actionUrl" jdbcType="VARCHAR" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="action_time" property="actionTime" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="DATE" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+  </resultMap>
+</mapper>

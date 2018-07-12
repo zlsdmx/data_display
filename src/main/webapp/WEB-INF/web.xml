@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee/web-app_2_3.xsd">
+	
+	<servlet>
+		<servlet-name>start</servlet-name>
+		<servlet-class>com.xhwl.servlet.ServerInit</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	
+	<servlet>  
+        <servlet-name>log4j config file</servlet-name>  
+        <servlet-class>com.xhwl.servlet.Log4jInitServlet</servlet-class>  
+        <init-param>  
+            <param-name>configfile</param-name>  
+            <param-value>/WEB-INF/classes/log4j.properties</param-value>  
+        </init-param>  
+           
+        <load-on-startup>1</load-on-startup>  
+    </servlet>
+    
+	<!-- 加载springmvc的上下文加载监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<!-- 加载spring的配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/applicationContext*</param-value>
+	</context-param>
+	<!-- 配置spring自带的字符编码过滤器 -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<!-- 对所有请求进行字符编码过滤 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 跨域访问 -->
+	<filter>
+         <filter-name>cros</filter-name>
+         <filter-class>com.xhwl.filter.CorsFilter</filter-class>
+     </filter>
+     <filter-mapping>
+         <filter-name>cros</filter-name>
+         <url-pattern>/*</url-pattern>
+     </filter-mapping>
+	<!-- 配置springmvc前端核心servlet：DispatcherServlet -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<!-- 自定义配置springmvc的配置文件放置路径 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- 拦截所有请求 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xhwl.mapper.NotificationMapper" >
+  <resultMap id="BaseResultMap" type="com.xhwl.po.Notification" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="image_Path" property="imagePath" jdbcType="VARCHAR" />
+    <result column="image_Name" property="imageName" jdbcType="VARCHAR" />
+    <result column="expire_Time" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="create_Time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="msg_Content" property="msgContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+</mapper>
