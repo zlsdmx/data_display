@@ -7,7 +7,7 @@
 	
 2、Mybatis自动生成插件使用规范
 	1> 配置文件配置：自动将下划线连接转存驼峰格式生成实体类以及属性名 ：<property name="useActualColumnNames" value="false"/>
-	2> 每次只生成一个表，配置table属性为要生成尸实体类映射的数据库表的表名。例如：<table tableName="notification" > 
+	2> 每次只生成一个表，配置table属性为要生成实体类映射的数据库表的表名。例如：<table tableName="notification" > 
 
 3、service层方法命名规范，查询方法命名以query开头
 
