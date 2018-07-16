@@ -115,4 +115,5 @@ TIME
 
 TIMESTAMP
 
-今天在做项目的时候,将CHARACTER做成了,字段的名称,和mysql的关键字,冲突了,还调了半天,一看在知道,CHARACTER是mysql的关键字,留个标记,呵呵!!
+今天在做项目的时候,将CHARACTER做成了,字段的名称,和mysql的关键字,冲突了,还调了半天,一看在知道,CHARACTER是mysql的关键字。
+留个标记,前事不忘，后事之师。
