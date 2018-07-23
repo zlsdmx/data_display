@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xhwl.mapper.CountResultByDayMapper" >
+  <resultMap id="BaseResultMap" type="com.xhwl.po.CountResultByDay" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="countdate" property="countdate" jdbcType="VARCHAR" />
+    <result column="res" property="res" jdbcType="BIGINT" />
+    <result column="alarm_leve" property="alarmLeve" jdbcType="VARCHAR" />
+    <result column="warning_type_explain" property="warningTypeExplain" jdbcType="VARCHAR" />
+  </resultMap>
+</mapper>

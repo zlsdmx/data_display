@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * 客户端缓存中心 只负责保存客户端登录和操作信息
  * 
- * @author mayu
+ * @author zhengss
  *
  */
 public class ClientCacheCenter {

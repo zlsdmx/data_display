@@ -24,7 +24,7 @@ public class CitiesController extends BaseController{
      * 跟具id查询cities
      * @param id
      */
-    @Auth(checkUserLogin=true,checkAdminLogin=true)
+//    @Auth(checkUserLogin=true,checkAdminLogin=true)
     @RequestMapping("/{citiesId}")        //请求路径占位符映射
     public ResponseEntity<?> getCitiesById(@PathVariable("citiesId")int id) throws Exception{
         Cities cities = citiesService.queryCitiesById(id);

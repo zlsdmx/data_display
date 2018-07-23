@@ -14,7 +14,7 @@
 	<!-- 需要连接数据库，需要保证项目的classpath下面有数据库的JDBC驱动 -->
 	<!-- connectionURL="jdbc:mysql://112.74.88.223:3306/test" -->
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                    connectionURL="jdbc:mysql://10.51.36.121:3306/service_production"
+                    connectionURL="jdbc:mysql://10.51.36.121:3306/strategic_data"
                     userId="root"
                     password="12345678">
     </jdbcConnection>
@@ -31,7 +31,7 @@
     <javaClientGenerator targetPackage="com.xhwl.mapper" targetProject="src\main\java" type="XMLMAPPER" />
     
 	<!-- 最后一个配置table,这里使用SQL通配符%来匹配所有表。generatedKey意味着所有的表都有一个id自增的主键，在生成实体类的时候会根据该配置生成相应的注解 ，注意其中的子元素配置顺序不能颠倒-->
-    <table tableName="cities" >  <!--tableName写 "%"可以作为通配符匹配数据库所有表，写具体的mysql表名student，可以单独生成一个实体类及其mapper文件 -->
+    <table tableName="count_result_by_day" >  <!--tableName写 "%"可以作为通配符匹配数据库所有表，写具体的mysql表名student，可以单独生成一个实体类及其mapper文件 -->
     	<!-- <property name="mergeable" value="true"></property> -->
     	<property name="useActualColumnNames" value="false"/><!-- 按照数据库字段名原样生成属性名true 或 false会自动将下划线和后面的第一个字母变成大写 -->
 		<generatedKey column="id" sqlStatement="Mysql" identity="true" />
